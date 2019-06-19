@@ -9,7 +9,7 @@ fi
 setopt noincappendhistory
 setopt nosharehistory
 
-export CDPATH=`pwd`/prog/school/projets/
+export CDPATH=${HOME}/prog/school/projets/
 
 # Display hexadecimal conversions
 
