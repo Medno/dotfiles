@@ -24,3 +24,5 @@ else
 endif
 set number
 
+" Grey background for the popup menu
+set highlight Pmenu ctermbg=gray guibg=gray

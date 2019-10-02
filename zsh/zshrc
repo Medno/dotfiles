@@ -20,9 +20,18 @@ function thex() { echo "obase=16; $1" | bc }
 
 alias gpod='git pull origin develop'
 alias cl++='clang++ -Wall -Werror -Wextra'
+alias g='gcc -Wall -Werror -Wextra'
 
 alias dco=docker-compose
+alias n=nvim
 
+case `uname` in
+	Darwin*)
+	  export PATH="${HOME}/.brew/bin:${PATH}"
+	;;
+esac
+
+export MAIL="${USER}@student.42.fr"
 
 #########################################################
 #                   BASIC CONFIG                        #
@@ -63,5 +72,4 @@ export BUNDLER_EDITOR="'/Applications/Sublime Text.app/Contents/SharedSupport/bi
 
 # Launch Visual Studio Code
 code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
-
 
