@@ -27,7 +27,7 @@ function	neovim()
 
 function	zshrc()
 {
-	ln -sfv $PWD/.zshrc ~/.zshrc
+	ln -sfv $PWD/zsh/zshrc ~/.zshrc
 }
 
 ########################################################################
