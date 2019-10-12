@@ -39,6 +39,11 @@ function	zshrc()
 	ln -sfv $PWD/zsh/zshrc ~/.zshrc
 }
 
+function	git_config()
+{
+	ln -sfv $PWD/git/gitconfig ~/.gitconfig
+}
+
 ########################################################################
 ##################	Launch
 ########################################################################
@@ -47,6 +52,7 @@ function	install()
 {
 	zshrc
 	neovim
+	git_config
 }
 
 case "$(uname)" in
