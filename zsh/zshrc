@@ -3,7 +3,7 @@
 if [ -z "${PATH-}" ];
   then export PATH=/usr/local/bin:/usr/bin:/bin;
 else
-  export PATH=${HOME}/prog/mybin:$PATH;
+  export PATH=${HOME}/Development/mybin:$PATH;
 fi
 
 setopt noincappendhistory
