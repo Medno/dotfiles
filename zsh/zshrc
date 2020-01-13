@@ -6,6 +6,8 @@ else
   export PATH=${HOME}/Development/mybin:$PATH;
 fi
 
+export PATH=$PATH:~/Cursus/my_bin/;
+
 setopt noincappendhistory
 setopt nosharehistory
 
