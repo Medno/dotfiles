@@ -31,8 +31,8 @@ function	neovim()
 	echo "[+] Installing ${bold}Neovim${normal} and plugins..."
 
 	ln -sfv $PWD/vim/vimrc $HOME/.vimrc 
-	install_package neovim
 	install_package node
+	install_package neovim
 
 	mkdir -p ~/.config/nvim
 
@@ -51,7 +51,7 @@ function	neovim()
 function	zshrc()
 {
 	echo "[+] Installing ${bold}zsh${normal} configuration..."
-	ln -sfv $PWD/zsh/zshrc ~/.zshrc
+	ln -sfv $PWD/zsh/zshrc $HOME/.zshrc
 }
 
 function	git_config()
@@ -73,7 +73,7 @@ function	install()
 
 function	correct_folder()
 {
-	if [ $0 = "./$(basename $0)" ]; then
+	if [ $1 = "./$(basename $1)" ]; then
 		return
 	fi
 	echo "Invalid location, you must be in setup git repository"
@@ -87,5 +87,5 @@ case "$(uname)" in
 		pc_check_installed="dpkg -s";;
 	*) usage ;;
 esac
-correct_folder
+correct_folder $0
 install
