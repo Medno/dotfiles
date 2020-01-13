@@ -17,15 +17,6 @@ set shiftwidth=4
 
 set colorcolumn=80
 set history=100
-let g:syntastic_c_include_dirs = [ '../inc', 'inc', 'libft/inc']
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
 
 
 
@@ -56,6 +47,15 @@ if (empty($TMUX))
   endif
 endif
 if (has("nvim"))
+	set statusline+=%#warningmsg#
+	set statusline+=%{SyntasticStatuslineFlag()}
+	set statusline+=%*
+	let g:syntastic_c_include_dirs = [ '../inc', 'inc', 'libft/inc', 'includes', 'libft/includes']
+	let g:syntastic_always_populate_loc_list = 1
+	let g:syntastic_auto_loc_list = 1
+	let g:syntastic_check_on_open = 1
+	let g:syntastic_check_on_wq = 0
+
 	colorscheme onedark
 endif
 let g:lightline = {
