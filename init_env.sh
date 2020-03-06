@@ -55,8 +55,8 @@ function	zshrc()
 	ln -sfv $PWD/zsh/zshrc $HOME/.zshrc
 
 	# Install Oh my zsh
-	OH_MY_ZSH_PATH="$PWD/zsh/oh-my-zsh"
-	ZSH="$OH_MY_ZSH_PATH" sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+	OH_MY_ZSH_PATH="$PWD/zsh/.oh-my-zsh"
+	ZSH="$OH_MY_ZSH_PATH" sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc
 
 	# Install zsh plugins
 	CURRENT_DIR=`pwd`
@@ -80,11 +80,21 @@ function	git_config()
 ##################	Launch
 ########################################################################
 
+function	ask_installation()
+{
+	echo -n 
+	read -p "Do you want to config $2 ? [y]/N " confirm
+	confirm=${confirm:-y}
+	if [ $confirm = 'y' ]; then
+		"$1"
+	fi
+}
+
 function	install()
 {
-	zshrc
-	neovim
-	git_config
+	ask_installation zshrc 'zsh'
+	ask_installation neovim 'neovim'
+	ask_installation git_config 'git'
 }
 
 function	correct_folder()
