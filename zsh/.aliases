@@ -1,0 +1,10 @@
+# Personal aliases
+
+alias gpod='git pull origin develop'
+alias cl++='clang++ -Wall -Werror -Wextra'
+alias g='gcc -Wall -Werror -Wextra'
+
+alias dco=docker-compose
+alias n=nvim
+
+

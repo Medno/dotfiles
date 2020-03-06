@@ -64,3 +64,6 @@ let g:lightline = {
   \ 'colorscheme': 'onedark',
   \ }
 
+
+let g:syntastic_mode_map = { 'passive_filetypes': ['python'] }
+

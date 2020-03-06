@@ -45,6 +45,7 @@ function	neovim()
 
 	onedark
 	nvim -c ':PlugInstall' -c ':qa'
+	nvim -c ':CocInstall coc-python' -c ':qa'
 
 }
 
@@ -52,12 +53,27 @@ function	zshrc()
 {
 	echo "[+] Installing ${bold}zsh${normal} configuration..."
 	ln -sfv $PWD/zsh/zshrc $HOME/.zshrc
+
+	# Install Oh my zsh
+	OH_MY_ZSH_PATH="$PWD/zsh/oh-my-zsh"
+	ZSH="$OH_MY_ZSH_PATH" sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+
+	# Install zsh plugins
+	CURRENT_DIR=`pwd`
+	ZSH_PLUGINS_DIR="$OH_MY_ZSH_PATH/custom/plugins"
+	mkdir -p "$ZSH_PLUGINS_DIR" && cd "$ZSH_PLUGINS_DIR"
+	if [ ! -d "$ZSH_PLUGINS_DIR/zsh-syntax-highlighting" ]; then
+		echo "-----> Installing zsh plugin 'zsh-syntax-highlighting'..."
+		git clone git://github.com/zsh-users/zsh-syntax-highlighting.git
+	fi
+	cd "$CURRENT_DIR"
 }
 
 function	git_config()
 {
 	echo "[+] Installing ${bold}git${normal} configuration..."
 	ln -sfv $PWD/git/gitconfig ~/.gitconfig
+	source $PWD/git/git_setup.sh
 }
 
 ########################################################################
@@ -89,3 +105,4 @@ case "$(uname)" in
 esac
 correct_folder $0
 install
+zsh ~/.zshrc
