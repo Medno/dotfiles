@@ -26,7 +26,27 @@ function	install_package()
 	echo "${bold}$package${normal} installed"
 }
 
-function	neovim()
+function	install_python()
+{
+	echo "[+] Installing ${bold}Python${normal} and packages..."
+	which python3 2> /dev/null
+	if [ $? -ne 0 ]; then
+		install_package python
+	else
+		python3 -V
+	fi
+
+	# Install global python package
+	# Jedi is required for autocompletion in Python in Neovim
+	pip list | grep -F jedi 2> /dev/null
+	if [ $? -ne 0 ]; then
+		pip3 install jedi
+	else
+		echo "Jedi package is already installed"
+	fi
+}
+
+function	install_neovim()
 {
 	echo "[+] Installing ${bold}Neovim${normal} and plugins..."
 
@@ -36,6 +56,11 @@ function	neovim()
 
 	mkdir -p ~/.config/nvim
 
+	# Create language specific settings folder
+	mkdir -p ~/.config/nvim/ftplugin
+	ln -sfv $HOME/.nvim $HOME/.vim
+	ln -sfv $PWD/vim/python.vim $HOME/.config/nvim/ftplugin/python.vim
+
 	ln -sfv $PWD/neovim/init.vim ~/.config/nvim/init.vim 
 	ln -sfv $PWD/vim/vimrc ~/.config/nvim/nvim.vim 
 	ln -sfv $PWD/neovim/setup_plugins.vim ~/.config/nvim/plugin.vim 
@@ -43,10 +68,9 @@ function	neovim()
 	curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
 		https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-	onedark
+#	onedark
 	nvim -c ':PlugInstall' -c ':qa'
-	nvim -c ':CocInstall coc-python' -c ':qa'
-
+	nvim -c ':CocInstall coc-python coc-json' -c ':qa'
 }
 
 function	zshrc()
@@ -93,8 +117,9 @@ function	ask_installation()
 function	install()
 {
 	ask_installation zshrc 'zsh'
-	ask_installation neovim 'neovim'
 	ask_installation git_config 'git'
+	ask_installation install_python 'python'
+	ask_installation install_neovim 'neovim'
 }
 
 function	correct_folder()
