@@ -66,5 +66,6 @@ let g:lightline = {
 
 
 let g:syntastic_mode_map = { 'passive_filetypes': ['python'] }
-" Go back to the current working folder directory
-map \ :Explore<CR>
+" Go back to the current working folder directory (Similar :b#, CTRL-^,
+" :Explore)
+map \ :RExplore<CR>
