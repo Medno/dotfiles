@@ -17,7 +17,7 @@ set shiftwidth=4
 
 set splitright
 
-set colorcolumn=80
+set colorcolumn=100
 set history=100
 
 
@@ -68,4 +68,12 @@ let g:lightline = {
 let g:syntastic_mode_map = { 'passive_filetypes': ['python'] }
 " Go back to the current working folder directory (Similar :b#, CTRL-^,
 " :Explore)
-map \ :RExplore<CR>
+map \ :Rexplore<CR>
+
+set splitbelow
+set splitright
+
+let g:omni_sql_no_default_maps = 1
+
+" Auto save buffer before exiting
+set autowriteall
