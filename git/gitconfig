@@ -11,7 +11,7 @@
 
 [core]
   pager = less -FRSX
-	editor = '$(HOME)/.brew/bin/nvim' -n -w
+	editor = /opt/homebrew/bin/nvim
 
 [alias]
   co = checkout
