@@ -20,7 +20,7 @@ set splitright
 set colorcolumn=100
 set history=100
 
-
+set foldlevel=99
 
 if has("multi_byte")
   set encoding=utf-8
@@ -31,7 +31,7 @@ endif
 set number
 
 " Grey background for the popup menu
-highlight Pmenu ctermbg=gray guibg=gray
+"highlight Pmenu ctermbg=gray guibg=gray
 
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
@@ -48,32 +48,11 @@ if (empty($TMUX))
     set termguicolors
   endif
 endif
-if (has("nvim"))
-	set statusline+=%#warningmsg#
-	set statusline+=%{SyntasticStatuslineFlag()}
-	set statusline+=%*
-	let g:syntastic_c_include_dirs = [ '../inc', 'inc', 'libft/inc', 'includes', 'libft/includes']
-	let g:syntastic_always_populate_loc_list = 1
-	let g:syntastic_auto_loc_list = 1
-	let g:syntastic_check_on_open = 1
-	let g:syntastic_check_on_wq = 0
-
-	colorscheme onedark
-endif
-let g:lightline = {
-  \ 'colorscheme': 'onedark',
-  \ }
-
-
-let g:syntastic_mode_map = { 'passive_filetypes': ['python'] }
-" Go back to the current working folder directory (Similar :b#, CTRL-^,
-" :Explore)
 map \ :Rexplore<CR>
 
 set splitbelow
 set splitright
 
-let g:omni_sql_no_default_maps = 1
-
 " Auto save buffer before exiting
 set autowriteall
+set term=screen-256color

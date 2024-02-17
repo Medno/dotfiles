@@ -1,6 +1,8 @@
 # Personal aliases
 
 alias gpod='git pull origin develop'
+alias merge_master='git sw master && git pull origin master && git sw -'
+
 alias cl++='clang++ -Wall -Werror -Wextra'
 alias g='gcc -Wall -Werror -Wextra'
 
