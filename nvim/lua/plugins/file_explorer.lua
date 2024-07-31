@@ -1,4 +1,5 @@
 return {
+	-- Project tree
 	{
 		"nvim-neo-tree/neo-tree.nvim",
 		dependencies = {
@@ -250,5 +251,17 @@ return {
 				},
 			})
 		end,
+	},
+	-- Powerful import edit after folder renaming
+	{
+		"alexpasmantier/pymple.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+		opts = {
+			update_imports = {
+				filetypes = { "python", "markdown", "config" },
+			},
+		},
 	},
 }
