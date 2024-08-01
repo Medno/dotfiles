@@ -1,5 +1,5 @@
 return {
-
+	{'nvim-lua/plenary.nvim'},
 	{
 		"nvim-pack/nvim-spectre",
 		opts = {
@@ -76,7 +76,7 @@ return {
 					map = "ti",
 					cmd = "<cmd>lua require('spectre').change_options('ignore-case')<CR>",
 					desc = "toggle ignore case",
-				},
+ 			},
 				["toggle_ignore_hidden"] = {
 					map = "th",
 					cmd = "<cmd>lua require('spectre').change_options('hidden')<CR>",
