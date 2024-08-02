@@ -3,7 +3,6 @@ return {
 		"akinsho/bufferline.nvim",
 		version = "*",
 		dependencies = "nvim-tree/nvim-web-devicons",
-		enabled = not vim.g.started_by_firenvim,
 
 		config = function()
 			local bufferline = require("bufferline")
@@ -19,8 +18,8 @@ return {
 					left_mouse_command = "buffer %d", -- can be a string | function, | false see "Mouse actions"
 					middle_mouse_command = nil, -- can be a string | function, | false see "Mouse actions"
 					indicator = {
-						-- icon = "▎", -- this should be omitted if indicator style is not 'icon'
-						style = "none", --"icon" | "underline" | "none",
+						icon = "▎", -- this should be omitted if indicator style is not 'icon'
+						style = "icon", --"icon" | "underline" | "none",
 					},
 					max_name_length = 25,
 					max_prefix_length = 15, -- prefix used when a buffer is de-duplicated
@@ -36,8 +35,8 @@ return {
 							separator = false,
 						},
 					},
-					color_icons = false, -- true | false, -- whether or not to add the filetype icon highlights
-					show_buffer_icons = false, --true | false, -- disable filetype icons for buffers
+					color_icons = true, -- true | false, -- whether or not to add the filetype icon highlights
+					show_buffer_icons = true, --true | false, -- disable filetype icons for buffers
 					show_buffer_close_icons = false,
 					show_close_icon = false, -- true | false,
 					show_tab_indicators = false, --true | false,

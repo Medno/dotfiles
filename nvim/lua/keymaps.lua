@@ -9,7 +9,7 @@ vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Move to window below", opts.arg
 vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Move to window above", opts.args })
 
 -- Neotree
-vim.keymap.set("n", "<leader>e", "<cmd>Neotree toggle<cr>", { desc = "Toggle neo-tree", opts.args })
+vim.keymap.set("n", "<leader>e", "<cmd>Neotree toggle left<cr>", { desc = "Toggle neo-tree", opts.args })
 vim.keymap.set("n", "<leader>E", "<cmd>Neotree toggle float<cr>", { desc = "Toggle neo-tree float", opts.args })
 
 -- Spectre, S/R

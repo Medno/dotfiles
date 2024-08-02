@@ -6,23 +6,28 @@ vim.cmd('syntax on')
 -- Set options
 vim.o.cursorline = true
 vim.o.showcmd = true
-vim.o.statusline = "%f%m%r%h%w [%Y] [0x%02.2B]%< %F%=%4v,%4l %3p%% of %L"
+ vim.o.statusline = "%f%m%r%h%w [%Y] [0x%02.2B]%< %F%=%4v,%4l %3p%% of %L"
 vim.o.laststatus = 2
-vim.o.smartindent = true
 vim.o.ruler = true
 vim.o.mouse = 'a'
 vim.o.backspace = 'indent,eol,start'
+
+vim.o.smartindent = true
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
-vim.o.splitright = true
-vim.o.colorcolumn = '100'
+-- vim.o.colorcolumn = '100'
 vim.o.history = 100
 vim.o.foldlevel = 99
+vim.o.foldmethod = 'indent'
+vim.o.autowriteall = true
+
+-- Line numbering
 vim.o.number = true
 vim.o.relativenumber = true
+
+-- Buffer split
 vim.o.splitbelow = true
 vim.o.splitright = true
-vim.o.autowriteall = true
 
 -- Set encoding if multi-byte support is available
 if vim.fn.has("multi_byte") == 1 then
