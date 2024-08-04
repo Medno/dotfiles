@@ -73,4 +73,14 @@ return {
 		priority = 1000,
 		opts = {},
 	},
+
+	-- Focus display on scope
+	{
+		"folke/twilight.nvim",
+		opts = {
+			-- your configuration comes here
+			-- or leave it empty to use the default settings
+			-- refer to the configuration section below
+		}
+	}
 }
