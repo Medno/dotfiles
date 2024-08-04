@@ -25,7 +25,11 @@ return {
 					max_prefix_length = 15, -- prefix used when a buffer is de-duplicated
 					truncate_names = false, -- whether or not tab names should be truncated
 					tab_size = 18,
-					diagnostics = false, -- false | "nvim_lsp" | "coc",
+					diagnostics = "nvim_lsp", -- false | "nvim_lsp" | "coc",
+					diagnostics_indicator = function(count, level, diagnostics_dict, context)
+						local icon = level:match("error") and " " or " "
+						return " " .. icon .. count
+					end,
 					-- The diagnostics indicator can be set to nil to keep the buffer name highlight but delete the highlighting
 					offsets = {
 						{
@@ -39,7 +43,7 @@ return {
 					show_buffer_icons = true, --true | false, -- disable filetype icons for buffers
 					show_buffer_close_icons = false,
 					show_close_icon = false, -- true | false,
-					show_tab_indicators = false, --true | false,
+					show_tab_indicators = true, --true | false,
 					show_duplicate_prefix = true, -- | false, -- whether to show duplicate buffer prefix
 					persist_buffer_sort = false, -- whether or not custom sorted buffers should persist
 					move_wraps_at_ends = false, -- whether or not the move command "wraps" at the first or last position

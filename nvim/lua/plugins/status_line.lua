@@ -9,6 +9,10 @@ return {
 				theme = bubbles,
 				component_separators = '',
 				section_separators = { left = '', right = '' },
+				disabled_filetypes = {
+					statusline = {},
+					winbar = { "toggleterm", "neo-tree" },
+				},
 			},
 			sections = {
 				lualine_a = { { 'mode', separator = { left = '' }, right_padding = 2 } },
@@ -31,7 +35,7 @@ return {
 				lualine_z = { 'location' },
 			},
 			tabline = {},
-			extensions = {},
+			extensions = { "fugitive", "neo-tree", "aerial", "mason", "trouble" },
 		}
 	}
 }

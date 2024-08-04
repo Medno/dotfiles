@@ -14,6 +14,8 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 	end
 end
 vim.opt.rtp:prepend(lazypath)
+
+-- Close Lazy with esc
 local user_grp = vim.api.nvim_create_augroup("LazyUserGroup", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "lazy",
