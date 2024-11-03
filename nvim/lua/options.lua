@@ -64,3 +64,8 @@ vim.diagnostic.config({
 		}
 	}
 })
+
+-- Custom configuration for LazyGit
+vim.g.lazygit_use_custom_config_file_path = 1                            -- config file path is evaluated if this value is 1
+local config_dir = vim.fn.expand("<sfile>:p:h")
+vim.g.lazygit_config_file_path = config_dir .. '/lua/config/lazygit.yml' -- custom config file path
