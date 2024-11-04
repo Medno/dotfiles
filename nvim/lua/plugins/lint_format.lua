@@ -35,6 +35,7 @@ return {
 					toml = { "taplo" },
 					yaml = { "yamlfmt" },
 					json = { "jq" },
+					html = { "djlint" }
 				},
 				format_on_save = {
 					-- These options will be passed to conform.format()
