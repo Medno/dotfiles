@@ -41,6 +41,14 @@ return {
           timeout_ms = 500,
           lsp_fallback = true,
         },
+        formatters = {
+          stylua = {
+            append_args = {
+              "--config-path",
+              "nvim/lua/config/.stylua.toml",
+            },
+          },
+        },
       })
     end,
   },
