@@ -24,7 +24,7 @@ return {
           c = { "clang-format" },
           lua = { "stylua" },
           -- Conform will run multiple formatters sequentially
-          python = { "ruff_fix", "ruff_format" },
+          python = { "isort", "ruff_fix", "ruff_format" },
           -- Use a sub-list to run only the first available formatter
           javascript = { "prettierd", "prettier" },
           typescript = { "prettierd", "prettier" },
