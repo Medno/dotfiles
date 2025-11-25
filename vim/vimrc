@@ -17,6 +17,8 @@ set shiftwidth=4
 
 set splitright
 
+colorscheme torte
+
 set colorcolumn=100
 set history=100
 

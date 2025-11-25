@@ -20,7 +20,6 @@ function install_package() {
 }
 
 function install_python() {
-  echo "[+] Installing ${bold}Python${normal} and packages..."
   which python3 2>/dev/null
   if [ $? -ne 0 ]; then
     install_package python
@@ -31,13 +30,14 @@ function install_python() {
 }
 
 function install_neovim() {
-  echo "[+] Installing ${bold}Neovim${normal} and plugins..."
-
   ln -sfv $PWD/vim/vimrc $HOME/.vimrc
-  install_package node
+
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+  nvm install node
+
   install_package neovim
 
-  mkdir -p ~/.config/nvim
+  mkdir -p $HOME/.config
 
   # Create language specific settings folder
   ln -sfv $PWD/nvim $HOME/.config/nvim
@@ -45,12 +45,17 @@ function install_neovim() {
 
 function _brew() {
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  brew install jesseduffield/lazygit/lazygit wget ripgrep fd openssl readline sqlite3 xz zlib tcl-tk node
+  brew install jesseduffield/lazygit/lazygit wget ripgrep fd openssl readline sqlite3 xz zlib tcl-tk
 }
 
 function zshrc() {
-  echo "[+] Installing ${bold}zsh${normal} configuration..."
+  which zsh > /dev/null
+  if [ $? -ne 0 ]; then
+    install_package zsh
+  fi
+
   ln -sfv $PWD/zsh/zshrc $HOME/.zshrc
+  ln -sfv $PWD/zsh/.aliases $HOME/.aliases
 
   # Install Oh my zsh
   OH_MY_ZSH_PATH="$HOME/.oh-my-zsh"
@@ -62,18 +67,21 @@ function zshrc() {
   mkdir -p "$ZSH_PLUGINS_DIR" && cd "$ZSH_PLUGINS_DIR"
   if [ ! -d "$ZSH_PLUGINS_DIR/zsh-syntax-highlighting" ]; then
     echo "-----> Installing zsh plugin 'zsh-syntax-highlighting'..."
-    git clone git://github.com/zsh-users/zsh-syntax-highlighting.git
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
   fi
   cd "$CURRENT_DIR"
 
   # Add Hack font
-  brew tap homebrew/cask-fonts && brew install --cask font-hack-nerd-fon
+  git clone --depth 1 https://github.com/ryanoasis/nerd-fonts.git && ./nerd-fonts/install.sh Hack && rm -rf ./nerd-fonts
 }
 
 function git_config() {
-  echo "[+] Installing ${bold}git${normal} configuration..."
-  ln -sfv $PWD/git/gitconfig ~/.gitconfig
+  ln -sfv $PWD/git/gitconfig $HOME/.gitconfig
   source $PWD/git/git_setup.sh
+}
+
+function install_cargo() {
+  curl https://sh.rustup.rs -sSf | sh
 }
 
 ########################################################################
@@ -84,18 +92,23 @@ function ask_installation() {
   echo -n
   read -p "Do you want to config $2 ? [y]/N " confirm
   confirm=${confirm:-y}
+    echo "[+] Installing ${bold}$2${normal} configuration..."
   if [ $confirm = 'y' ]; then
     "$1"
   fi
 }
 
 function install() {
-  xcode-select --install
+  case "$(uname)" in
+  "Darwin")
+    xcode-select --install
+  esac
   ask_installation _brew 'brew'
   ask_installation zshrc 'zsh'
   ask_installation git_config 'git'
   ask_installation install_python 'python'
   ask_installation install_neovim 'neovim'
+  ask_installation install_cargo 'cargo'
 }
 
 function correct_folder() {
@@ -117,6 +130,7 @@ case "$(uname)" in
   ;;
 *) usage ;;
 esac
+$pc_get update
 correct_folder $0
 install
 zsh ~/.zshrc
