@@ -6,7 +6,7 @@ return {
   },
   ft = "python",
   config = function()
-    require("venv-selector").setup()
+    require("venv-selector").setup({})
   end,
   keys = {
     { ",v", "<cmd>VenvSelect<cr>" },
