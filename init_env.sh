@@ -35,6 +35,7 @@ function install_neovim() {
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
   nvm install node
 
+  # Ensure it's neovim >0.9 installed, otherwise use brew
   install_package neovim
 
   mkdir -p $HOME/.config
@@ -45,6 +46,18 @@ function install_neovim() {
 
 function _brew() {
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  case "$(uname)" in
+  "Linux")
+    test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
+    test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.zshrc
+    sudo apt install locales
+    sudo locale-gen en_US.UTF-8
+    sudo dpkg-reconfigure locales
+    ;;
+  *) usage ;;
+  esac
+
   brew install jesseduffield/lazygit/lazygit wget ripgrep fd openssl readline sqlite3 xz zlib tcl-tk
 }
 
@@ -103,6 +116,8 @@ function install() {
   "Darwin")
     xcode-select --install
   esac
+  install_package gcc
+  install_package unzip
   ask_installation _brew 'brew'
   ask_installation zshrc 'zsh'
   ask_installation git_config 'git'
