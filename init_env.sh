@@ -23,6 +23,12 @@ function install_python() {
   which python3 2>/dev/null
   if [ $? -ne 0 ]; then
     install_package python
+  	case "$(uname)" in
+  	"Linux")
+	  # Create alias for python3
+	  sudo apt-get install python-is-python3
+	;;
+    esac
   else
     python3 -V
   fi
@@ -58,7 +64,7 @@ function _brew() {
   *) usage ;;
   esac
 
-  brew install jesseduffield/lazygit/lazygit wget ripgrep fd openssl readline sqlite3 xz zlib tcl-tk
+  brew install lazygit wget ripgrep fd openssl readline sqlite3 xz zlib tcl-tk luarocks
 }
 
 function zshrc() {
@@ -97,6 +103,16 @@ function install_cargo() {
   curl https://sh.rustup.rs -sSf | sh
 }
 
+function install_uv() {
+  curl -LsSf https://astral.sh/uv/install.sh | sh
+  source $HOME/.local/bin/env
+  # Set autocompletion to zsh
+  echo 'eval "$(uv generate-shell-completion zsh)"' >> ~/.zshrc
+
+  # Install formatter
+  uv tool install ruff
+}
+
 ########################################################################
 ##################	Launch
 ########################################################################
@@ -105,8 +121,8 @@ function ask_installation() {
   echo -n
   read -p "Do you want to config $2 ? [y]/N " confirm
   confirm=${confirm:-y}
-    echo "[+] Installing ${bold}$2${normal} configuration..."
   if [ $confirm = 'y' ]; then
+    echo "[+] Installing ${bold}$2${normal} configuration..."
     "$1"
   fi
 }
@@ -122,6 +138,7 @@ function install() {
   ask_installation zshrc 'zsh'
   ask_installation git_config 'git'
   ask_installation install_python 'python'
+  ask_installation install_uv 'uv'
   ask_installation install_neovim 'neovim'
   ask_installation install_cargo 'cargo'
 }
