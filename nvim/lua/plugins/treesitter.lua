@@ -1,5 +1,6 @@
 return {
   {
+    -- Parse code and display it prettier
     "nvim-treesitter/nvim-treesitter",
     branch = 'master',
     lazy = false,

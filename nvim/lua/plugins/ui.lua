@@ -128,4 +128,7 @@ return {
       extensions = { "fugitive", "neo-tree", "aerial", "mason", "trouble" },
     },
   },
+
+  -- Literally delete a neovim buffer
+  { "famiu/bufdelete.nvim" }
 }
