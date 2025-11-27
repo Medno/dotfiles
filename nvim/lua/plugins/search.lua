@@ -1,12 +1,13 @@
 return {
   { "nvim-lua/plenary.nvim" },
   {
+    -- Search and replace
     "nvim-pack/nvim-spectre",
     opts = {
       is_block_ui_break = true,
       color_devicons = true,
       open_cmd = "vnew",
-      live_update = true, -- auto execute search again when you write to any file in vim
+      live_update = true,      -- auto execute search again when you write to any file in vim
       lnum_for_results = true, -- show line number for search/replace results
       line_sep_start = "┌-----------------------------------------",
       result_padding = "¦  ",
@@ -178,15 +179,16 @@ return {
       },
       replace_vim_cmd = "cdo",
       is_open_target_win = false, --open file on opener window
-      is_insert_mode = false, -- start open panel on is_insert_mode
+      is_insert_mode = false,     -- start open panel on is_insert_mode
     },
   },
   {
+    -- Find file in project
     "nvim-telescope/telescope.nvim",
     tag = "0.1.8",
     -- or                              , branch = '0.1.x',
     dependencies = { "nvim-lua/plenary.nvim" },
   },
   { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-  "nvim-telescope/telescope-project.nvim",
+  { "nvim-telescope/telescope-project.nvim" },
 }

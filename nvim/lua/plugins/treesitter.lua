@@ -1,6 +1,9 @@
 return {
   {
+    -- Parse code and display it prettier
     "nvim-treesitter/nvim-treesitter",
+    branch = 'master',
+    lazy = false,
     build = ":TSUpdate",
     event = { "BufEnter", "VeryLazy" },
     config = function()
@@ -87,4 +90,9 @@ return {
   { "windwp/nvim-ts-autotag" },
   "nvim-treesitter/nvim-treesitter-textobjects",
   "nvim-treesitter/playground",
+  {
+    "nvim-treesitter/nvim-treesitter-context",
+    event = "VeryLazy",
+
+  },
 }
