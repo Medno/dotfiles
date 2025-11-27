@@ -76,6 +76,9 @@ vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
 vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
 
 -- LSP
---
 vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", { noremap = true, silent = true })
+
+-- Todo-comments
+vim.keymap.set("n", "<leader>tll", "<cmd>TodoLocList<CR>", { desc = "List all TODOs in project" })
+vim.keymap.set("n", "<leader>tt", "<cmd>TodoTelescope<CR>", { desc = "Open TodoTelescope" })
