@@ -28,7 +28,10 @@ return {
     config = true, -- necessary as per https://github.com/rmagatti/goto-preview/issues/88
   },
   -- LSP outline
-  { "stevearc/aerial.nvim", config = true },
+  {
+    "stevearc/aerial.nvim",
+    config = true
+  },
   {
     "ray-x/lsp_signature.nvim",
     event = "VeryLazy",
@@ -37,7 +40,7 @@ return {
   {
     "mason-org/mason-lspconfig.nvim",
     opts = {
-      ensure_installed = { "lua_ls", "pyright", "ruff", "taplo" },
+      ensure_installed = { "lua_ls", "ruff", "taplo", "ty" },
     },
     dependencies = {
       {
